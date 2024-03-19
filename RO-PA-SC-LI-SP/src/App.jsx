@@ -36,13 +36,23 @@ function App() {
     { id: 4, name:language ? "Spock" : "Spock", emoji: "🖖🏻", beats: [2, 0] },
   ];
 
+  const results = JSON.parse(localStorage.getItem('gameResults'))
+  
   const getResult = (userChoice, computerChoice) => {
     if (userChoice === computerChoice) {
+      results.ties = results.ties+ 1
+      localStorage.setItem('gameResults', JSON.stringify(results))
       return 0;
     }
     if (options[userChoice].beats.includes(computerChoice)) {
+      results.player = results.player + 1
+      localStorage.setItem('gameResults', JSON.stringify(results))
+
       return 1;
     } 
+      results.sheldon = results.sheldon+ 1
+      localStorage.setItem('gameResults', JSON.stringify(results))
+
       return 2;
     
   };
@@ -92,6 +102,24 @@ function App() {
     setResult(null);
     setDisabled(false);
   };
+
+  useEffect(() => {
+    // Me traigo los resultados con parse y envio resultado con stringify
+    const results  = JSON.parse(localStorage.getItem('gameResults'))
+ 
+    // chequeo si hay resultados para no sobreescribir el estado y sino envio todos en 0
+    if(!results) {
+      // console.log('entro')
+      localStorage.setItem('gameResults', 
+       JSON.stringify({
+          player: 0, 
+          sheldon: 0,
+          ties: 0
+        }
+      ))
+    }
+    
+  }, [])
 
   return (
     <div className="flex item-center justify-center h-screen bg-gray-600">
@@ -154,4 +182,3 @@ function App() {
 
 export default App;
 
-// https://youtu.be/6YtPXjY30Qc?si=TWW0CEqCl9EZR2XW
