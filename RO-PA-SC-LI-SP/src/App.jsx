@@ -173,7 +173,7 @@ function App() {
                 {language ? "Jugar de nuevo" : "Play again"}
               </button>
               <div>
-                <p>{`Resultados de la partida: Jugador: ${results.player} Sheldon: ${results.sheldon} Empates: ${results.ties}`}</p>
+                <p> {language ? `Resultados de la partida: Jugador: ${results.player} Sheldon: ${results.sheldon} Empates: ${results.ties}` : `Game results: Player: ${results.player} Sheldon: ${results.sheldon} Ties: ${results.ties}`} </p>
               </div>
             </div>
           )}
