@@ -172,6 +172,9 @@ function App() {
               >
                 {language ? "Jugar de nuevo" : "Play again"}
               </button>
+              <div>
+                <p>{`Resultados de la partida: Jugador: ${results.player} Sheldon: ${results.sheldon} Empates: ${results.ties}`}</p>
+              </div>
             </div>
           )}
         </div>
@@ -182,3 +185,4 @@ function App() {
 
 export default App;
 
+// https://youtu.be/6YtPXjY30Qc?si=TWW0CEqCl9EZR2XW
