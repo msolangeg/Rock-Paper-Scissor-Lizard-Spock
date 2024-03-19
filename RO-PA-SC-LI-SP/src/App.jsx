@@ -84,7 +84,7 @@ function App() {
             <button
             className='px-4 py-2 m-2 text-xl font-bold text-white bg-violet-500'
             key={option.id}
-            disable={disable}
+            disabled={disabled}
             onClick={() => handlePlay(option.id)}
             title={option.name}
             >
@@ -102,23 +102,22 @@ function App() {
 
           {result != null && (
             <div className='mt-8'>
-              {result === 0 && <p className='text-xl mt-4'>Empate 🤷🏻‍♀️</p>};
+              {result === 0 && <p className='text-xl mt-4'>Empate 🤷🏻‍♀️</p>}
 
               {result === 1 && (
               <p className='text-xl mt-4'>Tu has ganado con {options[userChoice]?.name} contra {''}{options[computerChoice]?.name} ✅
               </p>
-              )};
+              )}
 
               {result === 2 && (
               <p className='text-xl mt-4'>Tu has perdido con {options[userChoice]?.name} contra {''}{options[computerChoice]?.name} ❎
               </p>
-              )};
-
+              )}
               <button
                 className="bg-yellow-500 hover:bg-yellow-700 text-black font-semibold py-2 px-4 mt-4 border-b-4 border-yellow-700"
                 onClick={reset}
               >
-                Jugar de nuevo
+              Jugar de nuevo
               </button>
             </div>
           )}
