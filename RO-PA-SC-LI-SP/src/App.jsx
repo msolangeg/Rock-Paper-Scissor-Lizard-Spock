@@ -14,9 +14,9 @@ import { useState, useEffect } from "react";
 //   }
 //   if (options[userChoice].beats.includes(computerChoice)) {
 //     return 1;
-//   } 
+//   }
 //     return 2;
-  
+
 // };
 
 function App() {
@@ -26,45 +26,56 @@ function App() {
   const [disabled, setDisabled] = useState(false);
   const [userMessage, setUserMessage] = useState(null);
   const [computerMessage, setComputerMessage] = useState(null);
-  const [language ,setLanguage] = useState(true)
+  const [language, setLanguage] = useState(true);
 
   const options = [
-    { id: 0, name: language ? "Piedra" : "Rock" , emoji: "🪨", beats: [2, 3] },
-    { id: 1, name:language ? "Papel" : "Paper", emoji: "📄", beats: [0, 4] },
-    { id: 2, name: language ? "Tijera" : "Scissor", emoji: "✂️", beats: [1, 3] },
-    { id: 3, name: language ? "Lagarto" : "Lizard", emoji: "🐊", beats: [1, 4] },
-    { id: 4, name:language ? "Spock" : "Spock", emoji: "🖖🏻", beats: [2, 0] },
+    { id: 0, name: language ? "Piedra" : "Rock", emoji: "🪨", beats: [2, 3] },
+    { id: 1, name: language ? "Papel" : "Paper", emoji: "📄", beats: [0, 4] },
+    {
+      id: 2,
+      name: language ? "Tijera" : "Scissor",
+      emoji: "✂️",
+      beats: [1, 3],
+    },
+    {
+      id: 3,
+      name: language ? "Lagarto" : "Lizard",
+      emoji: "🐊",
+      beats: [1, 4],
+    },
+    { id: 4, name: language ? "Spock" : "Spock", emoji: "🖖🏻", beats: [2, 0] },
   ];
 
-  const results = JSON.parse(localStorage.getItem('gameResults'))
-  
+  const results = JSON.parse(localStorage.getItem("gameResults"));
+
   const getResult = (userChoice, computerChoice) => {
     if (userChoice === computerChoice) {
-      results.ties = results.ties+ 1
-      localStorage.setItem('gameResults', JSON.stringify(results))
+      results.ties = results.ties + 1;
+      localStorage.setItem("gameResults", JSON.stringify(results));
       return 0;
     }
     if (options[userChoice].beats.includes(computerChoice)) {
-      results.player = results.player + 1
-      localStorage.setItem('gameResults', JSON.stringify(results))
+      results.player = results.player + 1;
+      localStorage.setItem("gameResults", JSON.stringify(results));
 
       return 1;
-    } 
-      results.sheldon = results.sheldon+ 1
-      localStorage.setItem('gameResults', JSON.stringify(results))
+    }
+    results.sheldon = results.sheldon + 1;
+    localStorage.setItem("gameResults", JSON.stringify(results));
 
-      return 2;
-    
+    return 2;
   };
 
   const changeLanguage = () => {
-    setLanguage(!language)
-  }
+    setLanguage(!language);
+  };
 
   useEffect(() => {
     if (userChoice !== null) {
       setUserMessage(
-       language ? `Tu has elegido ${options[userChoice]?.emoji} - ${options[userChoice]?.name}` : `You choice ${options[userChoice]?.emoji} - ${options[userChoice]?.name}`
+        language
+          ? `Tu has elegido ${options[userChoice]?.emoji} - ${options[userChoice]?.name}`
+          : `You choice ${options[userChoice]?.emoji} - ${options[userChoice]?.name}`
       );
     }
   }, [userChoice]);
@@ -72,7 +83,9 @@ function App() {
   useEffect(() => {
     if (computerChoice !== null) {
       setComputerMessage(
-        language ? `Sheldon ha elegido ${options[computerChoice]?.emoji} - ${options[computerChoice]?.name}` : `Sheldon choice ${options[computerChoice]?.emoji} - ${options[computerChoice]?.name}`
+        language
+          ? `Sheldon ha elegido ${options[computerChoice]?.emoji} - ${options[computerChoice]?.name}`
+          : `Sheldon choice ${options[computerChoice]?.emoji} - ${options[computerChoice]?.name}`
       );
     }
   }, [computerChoice]);
@@ -105,34 +118,91 @@ function App() {
 
   useEffect(() => {
     // Me traigo los resultados con parse y envio resultado con stringify
-    const results  = JSON.parse(localStorage.getItem('gameResults'))
- 
+    const results = JSON.parse(localStorage.getItem("gameResults"));
+
     // chequeo si hay resultados para no sobreescribir el estado y sino envio todos en 0
-    if(!results) {
+    if (!results) {
       // console.log('entro')
-      localStorage.setItem('gameResults', 
-       JSON.stringify({
-          player: 0, 
+      localStorage.setItem(
+        "gameResults",
+        JSON.stringify({
+          player: 0,
           sheldon: 0,
-          ties: 0
-        }
-      ))
+          ties: 0,
+        })
+      );
     }
-    
-  }, [])
+  }, []);
+  const getClass = (id) => {
+    switch (id) {
+      case 0:
+        return "px-8 py-8 m-4 text-xl font-bold text-white bg-[#BF1F5A] hover:bg-[#8D0C3C] rounded-full";
+      case 1:
+        return "px-8 py-8 m-4 text-xl font-bold text-white bg-[#A61B1B] hover:bg-[#811515] rounded-full";
+      case 2:
+        return "px-8 py-8 m-4 text-xl font-bold text-white bg-[#038C4C] hover:bg-[#01562E] rounded-full";
+      case 3:
+        return "px-8 py-8 m-4 text-xl font-bold text-white bg-[#103C59] hover:bg-[#08263A] rounded-full";
+      case 4:
+        return "px-8 py-8 m-4 text-xl font-bold text-white bg-[#6966A2] hover:bg[#4E4C77] rounded-full";
+      default:
+        "px-8 py-8 m-4 text-xl font-bold text-white bg-[#F28627] hover:bg[#CA6F1F] rounded-full";
+    }
+  };
 
   return (
-    <div className="flex item-center justify-center h-screen bg-gray-600">
-      <div className="rounded-lg p-4 bg-gray-400">
+    <div className="flex item-center justify-center h-screen bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-[#FFE5DC] via-[#EE9777] to-[#F25D27] ">
+      <div className="p-4  mt-24">
         <h1 className="text-3x1 mb-4 text-center font-bold"> ¡Bazinga! </h1>
-        <button type="button" onClick={()=> changeLanguage()}>
-          {language ? "Play in English" : "Jugar en Español"
-          }
-          </button>
+        <button type="button" onClick={() => changeLanguage()}>
+          {language ? "Play in English" : "Jugar en Español"}
+        </button>
         <div className="max-w-md-mx-auto">
+          {userChoice !== null && <p className="text-xl mt-4">{userMessage}</p>}
+
+          {computerChoice !== null && (
+            <p className="text-xl mt-4">{computerMessage}</p>
+          )}
+
+          {result !== null && (
+            <div className="mt-8">
+              {result === 0 && (
+                <p className="text-xl mt-4">{language ? "Empate" : "Tie"}🤷🏻‍♀️</p>
+              )}
+
+              {result === 1 && (
+                <p className="text-xl mt-4">
+                  {language
+                    ? `Tu has ganado con ${options[userChoice]?.name} contra `
+                    : `You win with ${options[userChoice]?.name} vs `}
+                  {options[computerChoice]?.name} ✅
+                </p>
+              )}
+
+              {result === 2 && (
+                <p className="text-xl mt-4">
+                  {language
+                    ? `Tu has perdido con ${options[userChoice]?.name} contra `
+                    : `You lose with ${options[userChoice]?.name} vs `}
+                  {options[computerChoice]?.name} ❎
+                </p>
+              )}
+
+              <div>
+                <p>
+                  {" "}
+                  {language
+                    ? `Resultados de la partida: Jugador: ${results.player} Sheldon: ${results.sheldon} Empates: ${results.ties}`
+                    : `Game results: Player: ${results.player} Sheldon: ${results.sheldon} Ties: ${results.ties}`}{" "}
+                </p>
+              </div>
+            </div>
+          )}
+
           {options.map((option) => (
             <button
-              className="px-4 py-2 m-2 text-xl font-bold text-white bg-violet-500 hover:bg-violet-700"
+              // className="px-8 py-8 m-4 text-xl font-bold text-white bg-violet-500 hover:bg-violet-700 rounded-full"
+              className={getClass(option.id)}
               key={option.id}
               disabled={disabled}
               onClick={() => handlePlay(option.id)}
@@ -142,42 +212,13 @@ function App() {
             </button>
           ))}
 
-          {userChoice !== null && <p className="text-xl mt-4">{userMessage}</p>}
-
-          {computerChoice !== null && (
-            <p className="text-xl mt-4">{computerMessage}</p>
-          )}
-
-          {result !== null && (
-            <div className="mt-8">
-              {result === 0 && <p className="text-xl mt-4">{language ? "Empate" : "Tie" }🤷🏻‍♀️</p>}
-
-              {result === 1 && (
-                <p className="text-xl mt-4">
-                  {language ? `Tu has ganado con ${options[userChoice]?.name} contra ` : `You win with ${options[userChoice]?.name} vs `}
-                  {options[computerChoice]?.name} ✅
-                </p>
-              )}
-
-              {result === 2 && (
-                <p className="text-xl mt-4">
-                  {language ? `Tu has perdido con ${options[userChoice]?.name} contra ` : `You lose with ${options[userChoice]?.name} vs `}
-                  {options[computerChoice]?.name} ❎
-                </p>
-              )}
-
-              <button
-                className="bg-pink-500 hover:bg-pink-700 text-black font-semibold py-2 px-4 mt-4 border-b-4 border-pink-700"
-                onClick={reset}
-              >
-                {language ? "Jugar de nuevo" : "Play again"}
-              </button>
-              <div>
-                <p> {language ? `Resultados de la partida: Jugador: ${results.player} Sheldon: ${results.sheldon} Empates: ${results.ties}` : `Game results: Player: ${results.player} Sheldon: ${results.sheldon} Ties: ${results.ties}`} </p>
-              </div>
-            </div>
-          )}
         </div>
+       { result !== null &&  <button
+            className="bg-pink-500 hover:bg-pink-700 text-black font-semibold py-2 px-4 mt-4 border-b-4 border-pink-700"
+            onClick={reset}
+          >
+            {language ? "Jugar de nuevo" : "Play again"}
+          </button>}
       </div>
     </div>
   );
