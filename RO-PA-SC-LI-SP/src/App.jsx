@@ -177,20 +177,23 @@ function App() {
 
   return (
     <div 
-    className="flex item-center justify-center h-screen bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-[#FFE5DC] via-[#EE9777] to-[#F25D27] ">
-      <div 
-      className="p-4  mt-24" 
-      style={{ justifyContent: "center", alignItems: "center" }}
-      >
-        {/* <h1 className="text-3x1 mb-4 text-center font-bold"> ¡Bazinga! </h1>
-         */}
-         <img src={group} width={400} margin={0}  />
+    className="flex flex-col item-center justify-center h-screen bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-[#FFE5DC] via-[#EE9777] to-[#F25D27] px-24">
+      <div className="flex justify-end">
+
         <button 
         className="bg-[#3d3b66] hover:bg-[#103C59] text-white font-semibold py-2 px-4 mt-4 border-b-4 border-[#103C59] rounded-full "
         type="button"
         onClick={() => changeLanguage()}>
           {language ? "Play in English" : "Jugar en Español"}
         </button>
+      </div>
+      <div 
+      className="p-4 flex flex-col justify-center items-center gap-4" 
+      >
+        {/* <h1 className="text-3x1 mb-4 text-center font-bold"> ¡Bazinga! </h1>
+         */}
+         <img src={group} width={400} margin={0}  />
+         
         <div className="max-w-md-mx-auto">
           {userChoice !== null && <p className="text-xl mt-4">{userMessage}</p>}
 
