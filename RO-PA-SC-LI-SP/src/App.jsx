@@ -195,7 +195,7 @@ function App() {
          */}
          <img src={group} className="w-[200px] lg:w-[400px]" margin={0}  />
          
-        <div className="flex flex-col gap-16">      
+        <div className="flex flex-col gap-8">      
          
           <div className="h-auto lg:h-96">
                     <div className="h-full flex flex-col lg:flex-row justify-between items-center gap-8 lg:gap-0">
@@ -214,8 +214,9 @@ function App() {
                         />
                     </div>
           </div>
+          <div>
           {result !== null && (
-            <div className="mt-8">
+            <div className="mt-8 h-10 lg:h-20 text-xs font-medium italic text-white flex justify-center items-center">
               {result === 0 && (
                 <p className="text-xl mt-4">{language ? "Empate" : "Tie"}🤷🏻‍♀️</p>
               )}
@@ -234,11 +235,12 @@ function App() {
                   {language
                     ? `Tu has perdido con ${options[userChoice]?.name} contra `
                     : `You lose with ${options[userChoice]?.name} vs `}
-                  {options[computerChoice]?.name} ❎
+                  {options[computerChoice]?.name} ❌
                 </p>
               )}
             </div>
           )}
+          </div>
 
           <div className="flex justify-around lg:items-center flex-wrap gap-4 lg:gap-8">
           {options.map((option) => (

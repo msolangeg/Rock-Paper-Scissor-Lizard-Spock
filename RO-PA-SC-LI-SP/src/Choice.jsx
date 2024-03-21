@@ -68,7 +68,7 @@ export const Choice = ({ user, option, language, message }) => {
   };
 
   return (
-    <div className="flex flex-col justify-center items-center">
+    <div className="flex flex-col justify-center items-center gap-2">
       <div
         className={
           option
@@ -89,7 +89,7 @@ export const Choice = ({ user, option, language, message }) => {
           />
         )}
       </div>
-      <p>{message}</p>
+      <p className="h-10 lg:h-20 text-xs font-medium italic text-[#A61B1B] ">{message}</p>
     </div>
   );
 };
