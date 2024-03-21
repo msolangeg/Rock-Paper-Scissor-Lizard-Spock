@@ -5,6 +5,7 @@ import scissor from "./assets/scissor.png";
 import spock from "./assets/spock.png";
 import paper from "./assets/paper.png";
 import group from "./assets/group.png";
+import { Choice } from "./Choice";
 // const options = [
 //   { id: 0, name: "Rock", emoji: "🪨", beats: [2, 3] },
 //   { id: 1, name: "Paper", emoji: "📄", beats: [0, 4] },
@@ -99,8 +100,8 @@ function App() {
     if (userChoice !== null) {
       setUserMessage(
         language
-          ? `Tu has elegido ${options[userChoice]?.image}  ${options[userChoice]?.name}`
-          : `You choice ${options[userChoice]?.image}  ${options[userChoice]?.name}`
+          ? `Tu has elegido ${options[userChoice]?.name}`
+          : `You choice ${options[userChoice]?.name}`
       );
     }
   }, [userChoice]);
@@ -109,8 +110,8 @@ function App() {
     if (computerChoice !== null) {
       setComputerMessage(
         language
-          ? `Sheldon ha elegido ${options[computerChoice]?.image} - ${options[computerChoice]?.name}`
-          : `Sheldon choice ${options[computerChoice]?.image} - ${options[computerChoice]?.name}`
+          ? `Sheldon ha elegido ${options[computerChoice]?.name}`
+          : `Sheldon choice ${options[computerChoice]?.name}`
       );
     }
   }, [computerChoice]);
@@ -161,27 +162,27 @@ function App() {
   const getClass = (id) => {
     switch (id) {
       case 0:
-        return "px-10 py-10 m-4 bg-[#BF1F5A] hover:bg-[#8D0C3C] rounded-full ";
+        return "h-16 w-16 lg:h-24 lg:w-24 flex justify-center items-center bg-[#BF1F5A] hover:bg-[#8D0C3C] rounded-full ";
       case 1:
-        return "px-10 py-10 m-4 bg-[#A61B1B] hover:bg-[#811515] rounded-full ";
+        return "h-16 w-16 lg:h-24 lg:w-24 flex justify-center items-center bg-[#A61B1B] hover:bg-[#811515] rounded-full ";
       case 2:
-        return "px-10 py-10 m-4 bg-[#038C4C] hover:bg-[#01562E] rounded-full ";
+        return "h-16 w-16 lg:h-24 lg:w-24 flex justify-center items-center  bg-[#038C4C] hover:bg-[#01562E] rounded-full ";
       case 3:
-        return "px-10 py-10 m-4 bg-[#103C59] hover:bg-[#08263A] rounded-full ";
+        return "h-16 w-16 lg:h-24 lg:w-24 flex justify-center items-center  bg-[#103C59] hover:bg-[#08263A] rounded-full ";
       case 4:
-        return "px-10 py-10 m-4 bg-[#6966A2] hover:bg-[#4E4C77] rounded-full ";
+        return "h-16 w-16 lg:h-24 lg:w-24 flex justify-center items-center  bg-[#6966A2] hover:bg-[#4E4C77] rounded-full ";
       default:
-        "px-10 py-10 m-4 bg-[#F28627] hover:bg[#CA6F1F] rounded-full";
+        "h-16 w-16 lg:h-24 lg:w-24 flex justify-center items-center bg-[#F28627] hover:bg[#CA6F1F] rounded-full";
     }
   };
 
   return (
     <div 
-    className="flex flex-col item-center justify-center h-screen bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-[#FFE5DC] via-[#EE9777] to-[#F25D27] px-24">
-      <div className="flex justify-end">
+    className="flex flex-col item-center justify-start h-auto lg:h-screen bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-[#FFE5DC] via-[#EE9777] to-[#F25D27] pt-4 lg:px-24">
+      <div className="flex justify-end px-4 lg:px-0">
 
         <button 
-        className="bg-[#3d3b66] hover:bg-[#103C59] text-white font-semibold py-2 px-4 mt-4 border-b-4 border-[#103C59] rounded-full "
+        className="bg-[#3d3b66] hover:bg-[#103C59] text-white font-normal text-xs py-2 px-4 mt-4 border-b-4 border-[#103C59] rounded-full "
         type="button"
         onClick={() => changeLanguage()}>
           {language ? "Play in English" : "Jugar en Español"}
@@ -192,15 +193,27 @@ function App() {
       >
         {/* <h1 className="text-3x1 mb-4 text-center font-bold"> ¡Bazinga! </h1>
          */}
-         <img src={group} width={400} margin={0}  />
+         <img src={group} className="w-[200px] lg:w-[400px]" margin={0}  />
          
-        <div className="max-w-md-mx-auto">
-          {userChoice !== null && <p className="text-xl mt-4">{userMessage}</p>}
-
-          {computerChoice !== null && (
-            <p className="text-xl mt-4">{computerMessage}</p>
-          )}
-
+        <div className="flex flex-col gap-16">      
+         
+          <div className="h-auto lg:h-96">
+                    <div className="h-full flex flex-col lg:flex-row justify-between items-center gap-8 lg:gap-0">
+                      <Choice 
+                        user={language ? 'Jugador' : "Player"}
+                        option={userChoice}
+                        language
+                        message={userMessage}
+                      />
+                      <img/>
+                      <Choice 
+                        user="Sheldon"
+                        option={computerChoice}
+                        language
+                        message={computerMessage}
+                        />
+                    </div>
+          </div>
           {result !== null && (
             <div className="mt-8">
               {result === 0 && (
@@ -227,6 +240,7 @@ function App() {
             </div>
           )}
 
+          <div className="flex justify-around lg:items-center flex-wrap gap-4 lg:gap-8">
           {options.map((option) => (
             <button
               // className="px-8 py-8 m-4 text-xl font-bold text-white bg-violet-500 hover:bg-violet-700 rounded-full"
@@ -238,11 +252,14 @@ function App() {
             >
               <img
                 src={option.image}
-                width={40}
-                style={{ objectFit: "cover" }}
+               
+                style={{ objectFit: "cover", width: 40, height:40}}
               />
             </button>
           ))}
+          </div>
+
+
         </div>
         <div>
           {result !== null && (
