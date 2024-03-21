@@ -178,7 +178,7 @@ function App() {
 
   return (
     <div 
-    className="flex flex-col item-center justify-start h-auto lg:h-screen bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-[#FFE5DC] via-[#EE9777] to-[#F25D27] pt-4 lg:px-24">
+    className="flex flex-col item-center justify-start h-auto  bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-[#FFE5DC] via-[#EE9777] to-[#F25D27] pt-4 lg:px-24">
       <div className="flex justify-end px-4 lg:px-0">
 
         <button 
@@ -216,7 +216,7 @@ function App() {
           </div>
           <div>
           {result !== null && (
-            <div className="mt-8 h-10 lg:h-20 text-xs font-medium italic text-white flex justify-center items-center">
+            <div className="mt-8 h-5 lg:h-10 text-xs font-medium italic text-white flex justify-center items-center">
               {result === 0 && (
                 <p className="text-xl mt-4">{language ? "Empate" : "Tie"}🤷🏻‍♀️</p>
               )}
