@@ -216,9 +216,9 @@ function App() {
           </div>
           <div>
           {result !== null && (
-            <div className="mt-8 h-5 lg:h-10 text-xs font-medium italic text-white flex justify-center items-center">
+            <div className=" h-5 lg:h-10 text-xs font-medium italic text-white flex justify-center items-center">
               {result === 0 && (
-                <p className="text-xl mt-4">{language ? "Empate" : "Tie"}🤷🏻‍♀️</p>
+                <p className="text-xl">{language ? "Empate" : "Tie"}🤷🏻‍♀️</p>
               )}
 
               {result === 1 && (
@@ -268,10 +268,9 @@ function App() {
             <p
             className="bg-[#F28627]  text-white font-semibold py-2 px-4 rounded-full "
             >
-              {" "}
               {language
-                ? `Resultados de la partida: Jugador: ${results.player} Sheldon: ${results.sheldon} Empates: ${results.ties}`
-                : `Game results: Player: ${results.player} Sheldon: ${results.sheldon} Ties: ${results.ties}`}{" "}
+                ? `Resultados de la partida: Jugador: ${results.player} - Sheldon: ${results.sheldon} - Empates: ${results.ties}`
+                : `Game results: Player: ${results.player} - Sheldon: ${results.sheldon} - Ties: ${results.ties}`}
             </p>
           )}
         </div>
