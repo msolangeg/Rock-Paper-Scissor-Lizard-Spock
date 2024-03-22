@@ -23,9 +23,7 @@ https://github.com/msolangeg/Rock-Paper-Scissor-Lizard-Spock.git
 npm run dev
 
 Reglas del juego:
-
-<iframe width="1280" height="720" src="https://www.youtube.com/embed/x5Q6-wMx-K8" title="Rock Paper Scissors Lizard Spock (Extended Cut) ~ The Big Bang Theory ~" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
-
+https://www.youtube.com/embed/x5Q6-wMx-K8
 
 Deploy:
 https://rock-paper-scissor-lizard-spock-ltpp.vercel.app/
