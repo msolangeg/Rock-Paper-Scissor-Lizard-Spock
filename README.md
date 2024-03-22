@@ -21,7 +21,8 @@ https://github.com/msolangeg/Rock-Paper-Scissor-Lizard-Spock.git
 
 <h2>Iniciar el servidor de desarrollo:</h2></br> 
 npm run dev
-
+</br> 
+</br> 
 Reglas del juego:
 https://www.youtube.com/embed/x5Q6-wMx-K8
 
