@@ -19,7 +19,7 @@ Esto permite a los jugadores llevar un seguimiento de su progreso y ver sus esta
 <h2>Clonar el proyecto:</h2></br>
 https://github.com/msolangeg/Rock-Paper-Scissor-Lizard-Spock.git
 
-<h2>Iniciar el servidor de desarrollo:</h2></br>
+<h2>Iniciar el servidor de desarrollo:</h2></br> 
 npm run dev
 
 Reglas del juego:
